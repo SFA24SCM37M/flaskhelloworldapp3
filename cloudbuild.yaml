@@ -24,8 +24,8 @@ steps:
     - '80'
 
 images:
-- gcr.io/flaskhelloworldapp3/flaskhelloworldapp3
+  - gcr.io/flaskhelloworldapp3/flaskhelloworldapp3
 
 options:
-  logging: CLOUD_LOGGING_ONLY  # You can set the logging to CLOUD_LOGGING_ONLY or specify a logs bucket
-git
+  logging: CLOUD_LOGGING_ONLY
+
