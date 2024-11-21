@@ -1,13 +1,31 @@
 steps:
 # Build the container image
 - name: 'gcr.io/cloud-builders/docker'
-  args: ['build', '-t', 'gcr.io/$flaskhelloworld2/$flaskhelloworld2', '.']
+  args: ['build', '-t', 'gcr.io/flaskhelloworldapp3/flaskhelloworldapp3', '.']
+
 # Push the container image to Container Registry
 - name: 'gcr.io/cloud-builders/docker'
-  args: ['push', 'gcr.io/$flaskhelloworld2/$flaskhelloworld2']
+  args: ['push', 'gcr.io/flaskhelloworldapp3/flaskhelloworldapp3']
+
 # Deploy container image to Cloud Run
 - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
-  entrypoint: gcloud
-  args: ['run', 'deploy', '$flaskhelloworld2', '--image', 'gcr.io/$flaskhelloworld2/$flaskhelloworld2', '--region', 'us-central1', '--platform', 'managed','--port','80']
+  entrypoint: 'gcloud'
+  args:
+    - 'run'
+    - 'deploy'
+    - 'flaskhelloworldapp3'
+    - '--image'
+    - 'gcr.io/flaskhelloworldapp3/flaskhelloworldapp3'
+    - '--region'
+    - 'us-central1'
+    - '--platform'
+    - 'managed'
+    - '--port'
+    - '80'
+
 images:
-- gcr.io/$flaskhelloworld2/$flaskhelloworld2
+- gcr.io/flaskhelloworldapp3/flaskhelloworldapp3
+
+options:
+  logging: CLOUD_LOGGING_ONLY  # You can set the logging to CLOUD_LOGGING_ONLY or specify a logs bucket
+git
